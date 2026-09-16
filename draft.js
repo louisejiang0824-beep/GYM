@@ -16,6 +16,10 @@
       date: document.querySelector('#date')?.value || '',
       startTime: document.querySelector('#start-time')?.value || '',
       endTime: document.querySelector('#end-time')?.value || '',
+      durationMinutes: document.querySelector('#duration')?.value || '',
+      type: document.querySelector('#workout-type')?.value || 'strength',
+      cardioType: document.querySelector('#cardio-type')?.value || '',
+      cardioData: typeof collectCardioData === 'function' ? collectCardioData() : {},
       note: document.querySelector('#note')?.value || '',
       bodyParts: [...document.querySelectorAll('input[name="part"]:checked')].map(input => input.value),
       exercises: typeof collectExercises === 'function' ? collectExercises() : []
@@ -36,6 +40,7 @@
   function draftSummary(draft) {
     const partsCount = draft.bodyParts?.length || 0;
     const exerciseCount = draft.exercises?.filter(item => item.name || item.sets?.some(set => set.reps || set.weight)).length || 0;
+    if (draft.type === 'cardio') return '有氧训练 · ' + (draft.durationMinutes ? draft.durationMinutes + ' 分钟' : '尚未填写时长');
     return (partsCount ? partsCount + ' 个部位' : '尚未选择部位') + ' · ' + (exerciseCount ? exerciseCount + ' 个动作' : '尚未填写动作');
   }
   function restoreDraft(draft) {
@@ -49,6 +54,7 @@
     if (end) end.value = draft.endTime || '';
     if (note) note.value = draft.note || '';
     document.querySelectorAll('input[name="part"]').forEach(input => { input.checked = (draft.bodyParts || []).includes(input.value); });
+    if (typeof restoreCardioDraft === 'function') restoreCardioDraft(draft);
     if (Array.isArray(draft.exercises) && draft.exercises.length && typeof exerciseRow === 'function') {
       const list = document.querySelector('#exercise-list');
       if (list) {

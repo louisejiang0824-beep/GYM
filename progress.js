@@ -3,6 +3,7 @@ function actionProgress(records) {
   const actions = new Map();
   [...records].sort((a,b) => a.date.localeCompare(b.date) || (a.createdAt || 0)-(b.createdAt || 0)).forEach(record => {
     const session = new Map();
+    if (record.type === 'cardio' || !Array.isArray(record.exercises)) return;
     record.exercises.forEach(raw => {
       const exercise = normalizeExercise(raw);
       const sets = exercise.sets.filter(s => !s.isWarmup && Number(s.reps) > 0);
