@@ -695,3 +695,32 @@ input::-webkit-datetime-edit { min-width: 0; padding: 0; }
   .progress-stat-card { padding: 13px 12px 11px !important; }
   .progress-stat-card strong { font-size: 25px; }
 }
+
+/* iPhone 15 Pro home balance: keep the primary action and latest record above the floating nav. */
+@media (max-width: 430px) {
+  .topbar { min-height: 64px; padding-top: 12px; padding-bottom: 12px; }
+  .main-content { padding-top: 14px; padding-bottom: 26px; }
+  .hero {
+    min-height: 270px;
+    padding: 20px 18px;
+    border-radius: 20px;
+    background-position: 24% center;
+  }
+  .hero-copy { width: min(82%, 290px); }
+  .hero .eyebrow { margin-bottom: 8px; font-size: 10px; letter-spacing: .14em; }
+  .hero h1 { margin-bottom: 10px; font-size: 28px; line-height: 1.2; }
+  .hero .subtle { margin-bottom: 15px; font-size: 12px; line-height: 1.55; }
+  .hero .btn { min-height: 44px; padding: 10px 12px; }
+  .stats { gap: 7px; margin-bottom: 20px; }
+  .stat-card { padding: 11px 5px; border-radius: 14px; }
+  .stat-card .stat-label { font-size: 11px; line-height: 1.4; }
+  .stat-card strong { margin-top: 7px; font-size: 22px; }
+  .stat-card strong small { margin-top: 3px; font-size: 10px; }
+  .section-heading { margin-bottom: 10px; }
+  .section-heading h2 { font-size: 19px; }
+  .section-heading > .btn { min-height: 36px; padding: 7px 9px; font-size: 12px; }
+  .hero + .stats + .section-heading + .record-list { gap: 8px; }
+  .hero + .stats + .section-heading + .record-list > .record-card { padding: 13px 14px; }
+  .hero + .stats + .section-heading + .record-list > .record-card:nth-child(n + 2) { display: none; }
+  .hero + .stats + .section-heading + .record-list > .empty { padding: 22px 16px; }
+}
