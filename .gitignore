@@ -1,0 +1,12 @@
+# 本地备份副本，不参与线上部署
+/GYM/
+/GYM - 副本/
+/GYM - 副本 (2)/
+
+# Windows 桌面快捷方式
+/*.lnk
+
+# 本地布局检查产生的截图
+/tools/*.png
+/tools/*.jpg
+/tools/*.jpeg
