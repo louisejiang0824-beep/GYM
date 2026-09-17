@@ -2,8 +2,8 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#f6f8f5" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#090807" />
     <link rel="icon" type="image/svg+xml" href="logo.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
     <link rel="manifest" href="manifest.webmanifest" />
@@ -12,18 +12,40 @@
     <title>动起来 · 健身记录</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="design.css?v=20260918" />
+    <link rel="stylesheet" href="redesign.css?v=20260918" />
   </head>
   <body>
     <div class="app-shell">
-      <header class="topbar">
-        <a class="brand" href="#dashboard" aria-label="返回首页">
-          <img class="brand-logo" src="logo.svg" alt="动起来" />
+      <aside class="desktop-sidebar" aria-label="桌面导航">
+        <a class="sidebar-brand" href="#dashboard" aria-label="返回首页">
+          <img src="logo.svg" alt="动起来" />
           <span>动起来</span>
         </a>
-        <span class="storage-status"><i></i> 数据保存在本机</span>
-      </header>
+        <div class="sidebar-rule"></div>
+        <p class="sidebar-label">Workspace</p>
+        <nav class="sidebar-nav" aria-label="工作台导航">
+          <a href="#dashboard" data-nav="dashboard"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 11 8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" /></svg><span>总览</span></a>
+          <a href="#history" data-nav="history"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5" /><path d="M12 7v5l3 2" /></svg><span>训练历史</span></a>
+          <a href="#summary" data-nav="summary"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" /><path d="M8 3v4M16 3v4M4 10h16M8 14h.01M12 14h.01M16 14h.01M8 17h.01M12 17h.01" /></svg><span>训练汇总</span></a>
+          <a href="#settings" data-nav="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3" /><path d="m19.4 15 .1.1-1.8 3.1-.2-.1a2 2 0 0 0-2.1 0l-.1.1a2 2 0 0 0-1 1.8v.2H9.7v-.2a2 2 0 0 0-1-1.8l-.1-.1a2 2 0 0 0-2.1 0l-.2.1-1.8-3.1.1-.1a2 2 0 0 0 0-2.1l-.1-.1 1.8-3.1.2.1a2 2 0 0 0 2.1 0l.1-.1a2 2 0 0 0 1-1.8v-.2h3.6v.2a2 2 0 0 0 1 1.8l.1.1a2 2 0 0 0 2.1 0l.2-.1 1.8 3.1-.1.1a2 2 0 0 0 0 2.1Z" /></svg><span>设置</span></a>
+        </nav>
+        <a class="sidebar-quick" href="#new">＋ 记录训练</a>
+        <div class="sidebar-meta"><strong>LOCAL MODE</strong><span>数据保存在本机</span></div>
+      </aside>
 
-      <main id="app" class="main-content"></main>
+      <div class="workspace">
+        <header class="topbar">
+          <a class="brand" href="#dashboard" aria-label="返回首页">
+            <img class="brand-logo" src="logo.svg" alt="动起来" />
+            <span>动起来</span>
+          </a>
+          <div class="topbar-context"><span>GYMSYNC / WORKOUT LOG</span><strong>训练记录工作台</strong></div>
+          <div class="topbar-tools"><a class="btn btn-secondary topbar-quick" href="#new">＋ 新训练</a><span class="storage-status"><i></i> 数据保存在本机</span></div>
+        </header>
+
+        <main id="app" class="main-content"></main>
+        <footer class="app-footline"><span>GYMSYNC · 动起来</span><span>LOCAL MODE · 数据不会离开当前浏览器</span></footer>
+      </div>
 
       <nav class="bottom-nav" aria-label="主导航">
         <a href="#dashboard" data-nav="dashboard"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 11 8-7 8 7v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z" /></svg></span>首页</a>

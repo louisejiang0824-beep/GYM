@@ -3,7 +3,6 @@
   const appRoot = document.querySelector('#app');
   const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
   let reduced = reduceQuery.matches;
-  let scrollFrame = 0;
 
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
@@ -40,30 +39,10 @@
     animateCounters(appRoot);
   }
 
-  function updateHeroMotion() {
-    if (reduced || !appRoot) return;
-    const hero = appRoot.querySelector('.hero');
-    if (!hero) return;
-    const rect = hero.getBoundingClientRect();
-    const progress = clamp(-rect.top / Math.max(rect.height, 1), 0, 1);
-    hero.style.setProperty('--hero-shift', `${progress * 9}px`);
-    hero.style.setProperty('--hero-scale', String(1 + progress * .012));
-  }
-
-  function scheduleHeroMotion() {
-    if (scrollFrame) return;
-    scrollFrame = requestAnimationFrame(() => {
-      scrollFrame = 0;
-      updateHeroMotion();
-    });
-  }
-
   reduceQuery.addEventListener?.('change', event => {
     reduced = event.matches;
     animatePage();
-    updateHeroMotion();
   });
-  window.addEventListener('scroll', scheduleHeroMotion, { passive: true });
   window.addEventListener('hashchange', () => requestAnimationFrame(animatePage));
   if (!appRoot) return;
   new MutationObserver(mutations => {
@@ -74,5 +53,4 @@
     if (contentChanged) requestAnimationFrame(animatePage);
   }).observe(appRoot, { childList: true, subtree: true });
   animatePage();
-  updateHeroMotion();
 })();

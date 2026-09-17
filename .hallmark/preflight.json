@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-17",
+  "framework": "vanilla HTML/CSS/JS",
+  "fontStack": "Existing system sans; new Workbench pair uses Barlow Condensed + Barlow with Chinese system fallbacks",
+  "palette": "Existing green tokens preserved in business CSS; new visual shell uses olive-black reference tokens in tokens.css",
+  "motion": "motion.js exists; redesign removes scroll-linked parallax and uses one-shot route reveal plus numeric tick",
+  "spacing": "Existing 8px rhythm; new tokens add Hallmark 4pt semantic scale",
+  "preserve": ["routes", "localStorage keys", "training data schema", "existing business scripts", "existing icons and logo"],
+  "introduce": ["desktop side rail", "workbench layout", "token layer", "responsive desktop/mobile shell", "reduced-motion-safe entrance motion"]
+}
