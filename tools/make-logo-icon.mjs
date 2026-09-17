@@ -4,9 +4,9 @@ import { fileURLToPath } from 'node:url';
 const require = createRequire(import.meta.url);
 const sharp = require('C:\\Users\\Administrator\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\node_modules\\sharp');
 
-const svg = fs.readFileSync(new URL('../logo.svg', import.meta.url));
-await sharp(svg).resize(180, 180).png().toFile(fileURLToPath(new URL('../apple-touch-icon.png', import.meta.url)));
-const png = await sharp(svg).resize(256, 256).png().toBuffer();
+const source = fileURLToPath(new URL('../app-icon.png', import.meta.url));
+await sharp(source).resize(180, 180).png().toFile(fileURLToPath(new URL('../apple-touch-icon.png', import.meta.url)));
+const png = await sharp(source).resize(256, 256).png().toBuffer();
 const header = Buffer.alloc(6);
 header.writeUInt16LE(0, 0); // reserved
 header.writeUInt16LE(1, 2); // icon type
