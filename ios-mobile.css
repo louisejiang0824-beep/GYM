@@ -1,0 +1,297 @@
+/* GymSync · iOS Web/PWA Design Tokens
+   A local SF Symbols-style SVG system is used because Safari cannot load
+   Apple's private SF Symbols font directly from a web page. */
+:root {
+  --ios-font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", sans-serif;
+  --ios-label: var(--color-ink);
+  --ios-secondary-label: var(--color-neutral);
+  --ios-tertiary-label: var(--color-muted);
+  --ios-separator: var(--color-rule);
+  --ios-background: var(--color-paper);
+  --ios-secondary-background: var(--color-paper-2);
+  --ios-tertiary-background: var(--color-paper-3);
+  --ios-system-green: var(--color-green);
+  --ios-system-green-deep: var(--color-green-deep);
+  --ios-system-green-soft: color-mix(in srgb, var(--color-green-soft) 18%, white);
+  --ios-destructive: var(--color-error);
+
+  --ios-space-1: 4px;
+  --ios-space-2: 8px;
+  --ios-space-3: 12px;
+  --ios-space-4: 16px;
+  --ios-space-5: 20px;
+  --ios-space-6: 24px;
+  --ios-space-8: 32px;
+  --ios-space-10: 40px;
+
+  --ios-title-large: 34px;
+  --ios-title-1: 28px;
+  --ios-title-2: 24px;
+  --ios-title-3: 20px;
+  --ios-body: 16px;
+  --ios-footnote: 14px;
+  --ios-caption: 12px;
+  --ios-tab-label: 12px;
+
+  --ios-icon-tab: 24px;
+  --ios-icon-action: 18px;
+  --ios-icon-inline: 16px;
+  --ios-touch-target: 44px;
+  --ios-tab-bar-height: calc(84px + env(safe-area-inset-bottom));
+  --ios-radius-card: 12px;
+  --ios-radius-control: 10px;
+  --ios-radius-tab: 20px;
+  --ios-shadow-card: 0 0.5rem 1.5rem rgb(31 55 43 / 0.06);
+}
+
+.ios-icon {
+  display: inline-block;
+  width: var(--ios-icon-action);
+  height: var(--ios-icon-action);
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vertical-align: middle;
+}
+
+.ios-icon--tab { width: var(--ios-icon-tab); height: var(--ios-icon-tab); }
+.ios-icon--button { width: 20px; height: 20px; }
+.ios-icon--inline { width: var(--ios-icon-inline); height: var(--ios-icon-inline); }
+.ios-icon--empty { width: 2rem; height: 2rem; }
+
+@media (max-width: 60rem) {
+  :root { color-scheme: light; }
+
+  html,
+  body {
+    min-width: 0;
+    overflow-x: clip;
+    background: var(--ios-background);
+  }
+
+  body {
+    color: var(--ios-label);
+    font-family: var(--ios-font);
+    font-size: var(--ios-body);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button,
+  input,
+  select,
+  textarea { font: inherit; }
+
+  .app-shell,
+  .workspace { min-height: 100dvh; }
+
+  .topbar {
+    min-height: calc(3.75rem + env(safe-area-inset-top));
+    padding: calc(env(safe-area-inset-top) + var(--ios-space-2)) var(--ios-space-4) var(--ios-space-2);
+    border-bottom: 1px solid var(--ios-separator);
+    background: color-mix(in srgb, var(--ios-background) 92%, transparent);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    backdrop-filter: saturate(180%) blur(18px);
+  }
+
+  .brand {
+    gap: var(--ios-space-3);
+    color: var(--ios-label);
+    font-family: var(--ios-font);
+    font-size: var(--ios-title-3);
+    font-weight: 650;
+    letter-spacing: -0.025em;
+  }
+
+  .brand-logo { width: 2rem; height: 2rem; border-radius: var(--ios-radius-control); }
+
+  .topbar-tools { min-width: 0; gap: var(--ios-space-2); }
+  .storage-status { gap: var(--ios-space-2); color: var(--ios-secondary-label); font-size: var(--ios-footnote); white-space: nowrap; }
+  .storage-status i { width: 0.5rem; height: 0.5rem; flex-basis: 0.5rem; background: var(--ios-system-green); box-shadow: 0 0 0 0.25rem var(--ios-system-green-soft); }
+
+  .main-content {
+    width: min(100%, 44rem);
+    margin-inline: auto;
+    padding: var(--ios-space-6) var(--ios-space-4) calc(var(--ios-space-10) + var(--ios-tab-bar-height));
+  }
+
+  .app-footline { display: none; }
+
+  .page-title,
+  .form-header,
+  .detail-top {
+    gap: var(--ios-space-4);
+    margin-bottom: var(--ios-space-6);
+  }
+
+  .page-title h1,
+  .detail-top h1 { font-family: var(--ios-font); font-size: var(--ios-title-large); font-weight: 700; line-height: 1.12; letter-spacing: -0.04em; }
+  .page-title h2,
+  .panel h2,
+  .section-heading h2 { font-family: var(--ios-font); font-size: var(--ios-title-2); font-weight: 650; line-height: 1.2; letter-spacing: -0.025em; }
+  .panel h3,
+  .section-heading h3 { font-family: var(--ios-font); font-size: var(--ios-title-3); font-weight: 650; line-height: 1.25; }
+  .subtle { color: var(--ios-secondary-label); font-size: var(--ios-footnote); line-height: 1.45; }
+  .eyebrow { letter-spacing: 0.14em; }
+
+  .panel,
+  .record-card,
+  .stat-card,
+  .training-gallery,
+  .hero {
+    border-color: var(--ios-separator);
+    border-radius: var(--ios-radius-card);
+    box-shadow: var(--ios-shadow-card);
+  }
+
+  .panel { background: var(--ios-secondary-background); }
+  .record-card { background: var(--ios-secondary-background); }
+  .record-date { color: var(--ios-secondary-label); font-size: 0.9375rem; font-weight: 400; }
+  .record-title { color: var(--ios-label); font-size: 1.25rem; font-weight: 650; }
+  .record-meta { align-items: center; gap: var(--ios-space-3); color: var(--ios-secondary-label); font-size: var(--ios-footnote); }
+  .meta-item { display: inline-flex; align-items: center; gap: var(--ios-space-1); min-width: 0; }
+  .meta-item .ios-icon { color: var(--ios-secondary-label); }
+
+  .btn,
+  .icon-btn,
+  .bottom-nav a,
+  .part-chip label,
+  .calendar-day { -webkit-tap-highlight-color: transparent; }
+
+  .btn {
+    min-height: var(--ios-touch-target);
+    border-radius: var(--ios-radius-control);
+    gap: var(--ios-space-2);
+    font-family: var(--ios-font);
+    font-size: var(--ios-body);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .btn .ios-icon { width: 20px; height: 20px; }
+  .icon-btn {
+    display: inline-flex;
+    width: var(--ios-touch-target);
+    min-width: var(--ios-touch-target);
+    height: var(--ios-touch-target);
+    min-height: var(--ios-touch-target);
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+    color: var(--ios-secondary-label);
+  }
+  .icon-btn .ios-icon { width: var(--ios-icon-action); height: var(--ios-icon-action); }
+  .icon-btn:focus-visible,
+  .btn:focus-visible,
+  .bottom-nav a:focus-visible { outline: 2px solid var(--ios-system-green); outline-offset: 2px; }
+
+  .field label,
+  .toolbar label { display: inline-flex; align-items: center; gap: var(--ios-space-2); color: var(--ios-secondary-label); font-size: var(--ios-footnote); font-weight: 500; }
+  input,
+  select,
+  textarea {
+    min-height: 2.75rem;
+    border-color: var(--ios-separator);
+    border-radius: var(--ios-radius-control);
+    background: var(--ios-background);
+    color: var(--ios-label);
+    font-size: var(--ios-body);
+  }
+  textarea { min-height: 6rem; }
+
+  .time-range-fields { align-items: center; gap: var(--ios-space-2); }
+  .time-range-fields input { min-width: 0; }
+  .body-parts { gap: var(--ios-space-2); }
+  .part-chip label { min-height: 2.75rem; padding: var(--ios-space-2) var(--ios-space-3); border-radius: 999px; }
+
+  .exercise-card { border-color: var(--ios-separator); border-radius: var(--ios-radius-card); background: var(--ios-background); }
+  .exercise-card-head { align-items: flex-start; gap: var(--ios-space-3); }
+  .exercise-name-fields { min-width: 0; }
+  .exercise-name-fields select { width: 100%; }
+  .set-row { align-items: center; }
+  .set-row .icon-btn { margin-inline-start: auto; }
+
+  .summary-session { align-items: center; min-height: var(--ios-touch-target); }
+  .summary-session .ios-icon { margin-inline-start: auto; }
+  .calendar-header { align-items: center; }
+  .calendar-header .icon-btn { flex: 0 0 var(--ios-touch-target); }
+
+  .bottom-nav {
+    position: fixed;
+    z-index: var(--z-sticky);
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    width: 100%;
+    max-width: none;
+    height: var(--ios-tab-bar-height);
+    min-height: var(--ios-tab-bar-height);
+    margin: 0;
+    padding: var(--ios-space-2) var(--ios-space-3) env(safe-area-inset-bottom);
+    box-sizing: border-box;
+    border: 1px solid var(--ios-separator);
+    border-bottom: 0;
+    border-radius: var(--ios-radius-tab) var(--ios-radius-tab) 0 0;
+    background: color-mix(in srgb, var(--ios-background) 92%, transparent);
+    box-shadow: 0 -0.5rem 1.5rem rgb(31 55 43 / 0.08);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  .bottom-nav a {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: var(--ios-touch-target);
+    align-items: center;
+    justify-content: center;
+    gap: var(--ios-space-1);
+    padding: var(--ios-space-1) var(--ios-space-2);
+    border-radius: var(--ios-radius-control);
+    color: var(--ios-secondary-label);
+    font-family: var(--ios-font);
+    font-size: var(--ios-tab-label);
+    font-weight: 550;
+    line-height: 1.15;
+    text-decoration: none;
+  }
+  .bottom-nav a span { display: grid; width: var(--ios-icon-tab); height: var(--ios-icon-tab); flex: 0 0 var(--ios-icon-tab); place-items: center; margin: 0; }
+  .bottom-nav a svg { display: block; width: var(--ios-icon-tab); max-width: var(--ios-icon-tab); height: var(--ios-icon-tab); flex: 0 0 var(--ios-icon-tab); }
+  .bottom-nav a.active { background: var(--ios-system-green-soft); color: var(--ios-system-green-deep); }
+
+  .toast { bottom: calc(var(--ios-tab-bar-height) + var(--ios-space-4)); }
+}
+
+@media (max-width: 374px) {
+  :root { --ios-title-large: 28px; --ios-title-1: 26px; }
+  .main-content { padding-inline: var(--ios-space-3); }
+  .bottom-nav { padding-inline: var(--ios-space-2); }
+  .bottom-nav a { padding-inline: var(--ios-space-1); }
+}
+
+@media (min-width: 40.001rem) and (max-width: 60rem) {
+  .set-table { min-width: 0; overflow-x: clip; }
+  .set-header,
+  .set-row {
+    min-width: 0;
+    grid-template-columns: 2.5rem minmax(3.5rem, 1fr) repeat(3, minmax(3.5rem, 1fr)) 2.5rem;
+  }
+  .set-row input { min-width: 0; }
+}
+
+@media (min-width: 431px) and (max-width: 60rem) {
+  .main-content { padding-inline: max(var(--ios-space-4), calc((100vw - 28rem) / 2)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ios-icon { transition: none !important; }
+}
