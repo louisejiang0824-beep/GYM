@@ -29,9 +29,15 @@
   function animatePage() {
     if (!appRoot) return;
     appRoot.dataset.motionRoute = location.hash || '#dashboard';
+    const isRecordingRoute = /^#(?:new|edit(?:\/|$))/.test(location.hash);
     const items = appRoot.querySelectorAll('.hero, .stats, .summary-stats, .section-heading, .record-card, .panel, .app-disclosure, .workout-type-field, .cardio-type-option, .exercise-card, .form-footer');
     items.forEach((item, index) => {
       item.style.setProperty('--motion-index', String(Math.min(index, 10)));
+      if (isRecordingRoute) {
+        item.classList.remove('motion-item');
+        item.classList.add('motion-visible');
+        return;
+      }
       item.classList.toggle('motion-visible', reduced);
       item.classList.add('motion-item');
       if (!reduced) requestAnimationFrame(() => requestAnimationFrame(() => item.classList.add('motion-visible')));

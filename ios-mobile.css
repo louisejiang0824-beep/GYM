@@ -295,3 +295,18 @@
 @media (prefers-reduced-motion: reduce) {
   .ios-icon { transition: none !important; }
 }
+
+/* The workout editor is a continuous input surface: entering it must not
+   animate the page or move the user's focus on iOS Safari. */
+@media (max-width: 60rem) {
+  html { scroll-behavior: auto; }
+
+  .workout-form-panel,
+  .workout-form-panel .exercise-card,
+  .workout-form-panel .form-footer {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}

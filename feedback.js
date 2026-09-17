@@ -39,6 +39,7 @@
   });
   window.addEventListener('hashchange', () => {
     app.classList.remove('route-enter');
+    if (/^#(?:new|edit(?:\/|$))/.test(location.hash)) return;
     void app.offsetWidth;
     app.classList.add('route-enter');
     setTimeout(() => app.classList.remove('route-enter'), 360);
