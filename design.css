@@ -853,3 +853,173 @@ body.is-recording-flow .main-content { padding-bottom: 34px; }
   .cardio-field-grid { grid-template-columns: minmax(0, 1fr); }
   .cardio-detail-grid { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Apple-inspired visual pass: editorial hierarchy, material surfaces, and restrained motion. */
+:root {
+  --apple-ease: cubic-bezier(.22, .61, .36, 1);
+  --apple-spring: cubic-bezier(.2, .86, .22, 1);
+  --apple-material: rgba(255, 255, 255, .82);
+  --apple-border: rgba(223, 232, 225, .82);
+  --apple-hairline: rgba(32, 56, 44, .08);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The app uses one calm reveal language across routes. */
+.motion-item {
+  opacity: 0;
+  transform: translate3d(0, 12px, 0);
+  transition:
+    opacity .38s var(--apple-ease),
+    transform .52s var(--apple-spring);
+  transition-delay: calc(var(--motion-index, 0) * 28ms);
+  will-change: opacity, transform;
+}
+.motion-item.motion-visible { opacity: 1; transform: translate3d(0, 0, 0); }
+
+/* A small amount of parallax gives the cover depth without turning the app into a spectacle. */
+.hero {
+  min-height: 304px;
+  border-color: rgba(255, 255, 255, .12);
+  box-shadow: 0 18px 38px rgba(26, 77, 52, .14), 0 2px 8px rgba(26, 77, 52, .07);
+  background-image:
+    linear-gradient(90deg, rgba(16, 55, 37, .96) 0%, rgba(33, 92, 65, .82) 43%, rgba(33, 92, 65, .48) 100%),
+    url('hero-training.png');
+  background-position: 0 0, calc(18% + var(--hero-shift, 0px)) center;
+  background-size: auto, cover;
+  background-repeat: no-repeat;
+  transition: box-shadow .32s var(--apple-ease), transform .32s var(--apple-ease);
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255,255,255,.08), transparent 34%, rgba(0,0,0,.08));
+  mix-blend-mode: screen;
+  opacity: .42;
+}
+.hero::after {
+  opacity: .44;
+  transform: translate3d(8%, -8%, 0) scale(1.06);
+  transition: transform .9s var(--apple-spring), opacity .45s var(--apple-ease);
+}
+.hero:hover::after { opacity: .58; transform: translate3d(4%, -5%, 0) scale(1.1); }
+.hero-copy { align-self: center; max-width: 360px; }
+.hero h1 { max-width: 9ch; letter-spacing: -.045em; }
+.hero .subtle { max-width: 34ch; color: rgba(255,255,255,.78); }
+.hero .eyebrow { color: rgba(230, 246, 235, .72); }
+.hero .btn {
+  box-shadow: 0 8px 18px rgba(12, 43, 28, .13);
+  transition: transform .2s var(--apple-spring), box-shadow .2s var(--apple-ease), background-color .2s ease;
+}
+.hero .btn:hover { transform: translateY(-1px); box-shadow: 0 11px 22px rgba(12, 43, 28, .18); }
+
+.stats { gap: 12px; }
+.stat-card {
+  border-color: var(--apple-border);
+  background: rgba(255, 255, 255, .9);
+  box-shadow: 0 8px 20px rgba(32, 56, 44, .055), 0 1px 2px rgba(32, 56, 44, .04);
+  transition: transform .24s var(--apple-spring), box-shadow .24s var(--apple-ease), border-color .2s ease;
+}
+.stat-card:hover { transform: translateY(-2px); border-color: #c8ddce; box-shadow: 0 12px 26px rgba(32, 56, 44, .08); }
+.stat-card strong, .progress-stat-card strong { font-variant-numeric: tabular-nums; letter-spacing: -.03em; }
+
+.section-heading { align-items: end; }
+.section-heading h2, .panel h2, .panel h3 { letter-spacing: -.025em; }
+.record-card, .panel, .app-disclosure {
+  border-color: var(--apple-border);
+  box-shadow: 0 8px 22px rgba(32, 56, 44, .045), 0 1px 2px rgba(32, 56, 44, .035);
+}
+.record-card { transition: transform .22s var(--apple-spring), box-shadow .22s var(--apple-ease), border-color .2s ease; }
+.record-card:hover { transform: translateY(-2px); border-color: #c8ddce; box-shadow: 0 12px 28px rgba(32, 56, 44, .075); }
+
+button, .btn, a, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
+button, .btn { transition: transform .2s var(--apple-spring), background-color .2s ease, color .2s ease, box-shadow .2s var(--apple-ease), border-color .2s ease; }
+button:active, .btn:active { transform: scale(.975); }
+input, select, textarea {
+  border-color: #d6e3d9;
+  box-shadow: inset 0 1px 1px rgba(32, 56, 44, .025);
+  transition: border-color .2s ease, box-shadow .2s var(--apple-ease), background-color .2s ease;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: #85b697;
+  box-shadow: 0 0 0 3px rgba(47, 125, 90, .14), inset 0 1px 1px rgba(32, 56, 44, .025);
+}
+.exercise-card, .form-footer, .cardio-type-option, .workout-type-field { transition: opacity .38s var(--apple-ease), transform .52s var(--apple-spring), border-color .2s ease, box-shadow .2s var(--apple-ease), background-color .2s ease; }
+.exercise-card:hover, .cardio-type-option:hover { box-shadow: 0 9px 20px rgba(32, 56, 44, .06); }
+
+/* iOS-like material navigation that remains inside the safe area. */
+.bottom-nav {
+  bottom: max(14px, calc(14px + env(safe-area-inset-bottom)));
+  width: min(390px, calc(100% - 28px));
+  padding: 7px;
+  border-color: rgba(255, 255, 255, .72);
+  background: var(--apple-material);
+  box-shadow: 0 16px 42px rgba(27, 62, 42, .16), 0 2px 8px rgba(27, 62, 42, .06);
+  -webkit-backdrop-filter: blur(22px) saturate(1.12);
+  backdrop-filter: blur(22px) saturate(1.12);
+}
+.bottom-nav a {
+  min-width: 0;
+  border-radius: 15px;
+  transition: background-color .24s var(--apple-ease), color .2s ease, transform .2s var(--apple-spring);
+}
+.bottom-nav a:hover { transform: translateY(-1px); }
+.bottom-nav a.active { box-shadow: inset 0 0 0 1px rgba(47, 125, 90, .05); }
+
+/* Keep long dates and action controls aligned on narrow iPhone widths. */
+.date-range-fields, .time-range-fields { min-width: 0; }
+.date-range-fields > *, .time-range-fields > *, .form-grid > * { min-width: 0; }
+.form-footer { padding-bottom: max(2px, env(safe-area-inset-bottom)); }
+
+@media (max-width: 650px) {
+  .main-content { padding-bottom: calc(104px + env(safe-area-inset-bottom)); }
+  .hero {
+    min-height: 286px;
+    padding: 23px 20px;
+    background-position: 0 0, calc(24% + var(--hero-shift, 0px)) center;
+    background-size: auto, auto 100%;
+  }
+  .hero-copy { width: min(88%, 312px); }
+  .hero h1 { max-width: 10ch; font-size: clamp(28px, 8vw, 34px); }
+  .stats { gap: 8px; }
+  .stat-card { min-width: 0; padding-inline: 7px; }
+  .stat-card .stat-label { overflow-wrap: anywhere; }
+  .bottom-nav { width: calc(100% - 24px); }
+}
+
+@media (max-width: 380px) {
+  .hero { min-height: 274px; padding-inline: 17px; }
+  .hero-copy { width: min(92%, 280px); }
+  .hero h1 { font-size: 27px; }
+  .bottom-nav { width: calc(100% - 16px); padding: 5px; }
+  .bottom-nav a { padding-inline: 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .motion-item,
+  .motion-item.motion-visible,
+  .hero,
+  .hero::after,
+  .stat-card,
+  .record-card,
+  .bottom-nav a,
+  button,
+  .btn,
+  input,
+  select,
+  textarea,
+  .exercise-card,
+  .form-footer,
+  .cardio-type-option,
+  .workout-type-field { transition: none !important; transform: none !important; }
+}
