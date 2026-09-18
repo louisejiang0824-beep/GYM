@@ -77,6 +77,8 @@
     const status = document.createElement('div');
     status.dataset.draftStatus = '';
     status.className = 'draft-status' + (restored ? ' is-restored' : '');
+    status.setAttribute('role', 'status');
+    status.setAttribute('aria-live', 'polite');
     status.innerHTML = restored
       ? '<span><span class="draft-dot"></span>已恢复未完成草稿 · ' + draftSummary(draft) + '</span><button type="button" data-clear-draft>清除草稿</button>'
       : '<span><span class="draft-dot"></span>填写内容会自动保存</span>';

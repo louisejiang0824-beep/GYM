@@ -131,6 +131,10 @@
 
   .page-title h1,
   .detail-top h1 { font-family: var(--ios-font); font-size: var(--ios-title-large); font-weight: 700; line-height: 1.12; letter-spacing: -0.04em; }
+  .hero h1,
+  .hero .eyebrow,
+  .page-title .eyebrow,
+  .form-header .eyebrow { font-family: var(--ios-font); }
   .page-title h2,
   .panel h2,
   .section-heading h2 { font-family: var(--ios-font); font-size: var(--ios-title-2); font-weight: 650; line-height: 1.2; letter-spacing: -0.025em; }
@@ -209,6 +213,15 @@
   .time-range-fields input { min-width: 0; }
   .body-parts { gap: var(--ios-space-2); }
   .part-chip label { min-height: 2.75rem; padding: var(--ios-space-2) var(--ios-space-3); border-radius: 999px; }
+
+  .workout-type-switch button {
+    min-height: var(--ios-touch-target);
+  }
+
+  .calendar-panel { padding-inline: var(--ios-space-3); }
+  .weekday-row,
+  .calendar-grid { gap: var(--ios-space-1); }
+  .calendar-day { min-width: 0; min-height: var(--ios-touch-target); }
 
   .exercise-card { border-color: var(--ios-separator); border-radius: var(--ios-radius-card); background: var(--ios-background); }
   .exercise-card-head { align-items: flex-start; gap: var(--ios-space-3); }
