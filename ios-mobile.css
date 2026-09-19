@@ -352,3 +352,161 @@
     transition: none !important;
   }
 }
+
+/* Dashboard homepage: a continuous cover-to-content surface.  The existing
+   record data and routes stay untouched; these classes only change the home
+   screen's visual hierarchy. */
+.dashboard-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 29rem;
+  margin-bottom: 0;
+  border: 0 !important;
+  border-radius: 0 0 2rem 2rem !important;
+  box-shadow: none !important;
+  background-image:
+    linear-gradient(180deg, rgb(7 27 18 / 0.12) 0%, rgb(7 27 18 / 0.18) 42%, rgb(243 246 243 / 0) 72%, var(--ios-background) 100%),
+    linear-gradient(90deg, rgb(6 25 16 / 0.92) 0%, rgb(6 25 16 / 0.64) 45%, rgb(6 25 16 / 0.16) 82%, transparent 100%),
+    url('hero-training.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.dashboard-hero-copy {
+  position: relative;
+  z-index: 1;
+  align-self: end;
+  max-width: 34rem;
+}
+
+.dashboard-hero h1 {
+  max-width: 12ch;
+  color: white;
+  font-family: var(--ios-font);
+  font-size: clamp(2.65rem, 5vw, 4.6rem);
+  font-weight: 750;
+  letter-spacing: -0.055em;
+  line-height: 1.02;
+}
+
+.dashboard-hero .eyebrow { color: var(--color-green-soft); }
+.dashboard-hero .subtle { max-width: 32rem; color: rgb(255 255 255 / 0.78); }
+.dashboard-hero .btn-primary {
+  color: var(--color-shell);
+  background: var(--color-green-soft);
+  box-shadow: 0 0.5rem 1.25rem rgb(5 22 14 / 0.16);
+}
+.dashboard-hero .btn-primary:hover { color: var(--color-shell); background: white; }
+.dashboard-hero-quote {
+  position: relative;
+  z-index: 1;
+  align-self: end;
+  max-width: 16rem;
+  color: rgb(255 255 255 / 0.72);
+  border-color: rgb(228 241 232 / 0.65);
+}
+
+.dashboard-stat-wrap { position: relative; z-index: 1; }
+.dashboard-stat-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-bottom: 2.5rem;
+  padding-block: 1.125rem 1.25rem;
+  border: 0;
+  border-bottom: 1px solid var(--ios-separator);
+  border-radius: 0;
+  background: linear-gradient(180deg, var(--ios-background) 0%, color-mix(in srgb, var(--ios-system-green-soft) 36%, var(--ios-background)) 100%);
+  box-shadow: none;
+}
+
+.dashboard-stat-strip .stat-card {
+  position: relative;
+  min-width: 0;
+  padding: 0 1.25rem;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: center;
+}
+.dashboard-stat-strip .stat-card + .stat-card::before {
+  position: absolute;
+  top: 0.25rem;
+  bottom: 0.25rem;
+  left: 0;
+  width: 1px;
+  background: var(--ios-separator);
+  content: '';
+}
+.dashboard-stat-strip .stat-label { color: var(--ios-secondary-label); font-size: var(--ios-caption); }
+.dashboard-stat-strip .stat-card strong {
+  margin-top: 0.35rem;
+  color: var(--ios-system-green-deep);
+  font-family: var(--ios-font);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.dashboard-stat-strip .stat-card strong small { color: var(--ios-secondary-label); font-size: var(--ios-caption); }
+
+.dashboard-recent { margin-top: 0.25rem; }
+.dashboard-recent-heading { margin-bottom: 0.25rem; }
+.dashboard-recent-list { gap: 0; border-top: 1px solid var(--ios-separator); }
+.dashboard-recent-list .record-card {
+  padding: 1rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--ios-separator);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+.dashboard-recent-list .record-card:hover { border-color: var(--ios-separator); box-shadow: none; }
+.dashboard-recent-list .record-actions { flex-direction: row; }
+.dashboard-recent-list .empty { border: 0; background: transparent; box-shadow: none; }
+
+@media (max-width: 60rem) {
+  .dashboard-hero {
+    min-height: clamp(22rem, 85vw, 27rem);
+    margin: calc(-1 * var(--ios-space-6)) calc(-1 * var(--ios-space-4)) 0;
+    padding: 6.75rem var(--ios-space-6) 2.25rem;
+    align-items: end;
+    background-image:
+      linear-gradient(180deg, rgb(7 27 18 / 0.08) 0%, rgb(7 27 18 / 0.2) 36%, rgb(7 27 18 / 0.1) 58%, var(--ios-background) 100%),
+      linear-gradient(90deg, rgb(6 25 16 / 0.9) 0%, rgb(6 25 16 / 0.55) 54%, rgb(6 25 16 / 0.08) 100%),
+      url('hero-training.png');
+    background-position: center;
+    background-size: cover;
+  }
+  .dashboard-hero-copy { width: min(100%, 22rem); }
+  .dashboard-hero h1 { font-size: clamp(2.35rem, 10vw, 3.3rem); }
+  .dashboard-hero .subtle { margin-block: 0.875rem 1.25rem; }
+  .dashboard-hero .btn-primary { width: auto; min-width: min(100%, 14rem); }
+  .dashboard-hero-quote { display: none; }
+  .dashboard-stat-wrap { margin-inline: calc(-1 * var(--ios-space-4)); }
+  .dashboard-stat-strip { margin-bottom: 1.75rem; padding-inline: var(--ios-space-4); }
+  .dashboard-stat-strip .stat-card { padding-inline: var(--ios-space-2); }
+  .dashboard-stat-strip .stat-label { white-space: nowrap; }
+  .dashboard-stat-strip .stat-card strong { font-size: 1.9rem; }
+  .dashboard-recent { margin-top: 0; }
+  .dashboard-recent-list .record-card { align-items: center; }
+}
+
+@media (max-width: 374px) {
+  .dashboard-hero {
+    min-height: 21rem;
+    margin-inline: calc(-1 * var(--ios-space-3));
+    padding-inline: var(--ios-space-4);
+  }
+  .dashboard-hero h1 { font-size: 2.25rem; }
+  .dashboard-stat-wrap { margin-inline: calc(-1 * var(--ios-space-3)); }
+  .dashboard-stat-strip { padding-inline: var(--ios-space-3); }
+  .dashboard-stat-strip .stat-card { padding-inline: 0.25rem; }
+  .dashboard-stat-strip .stat-card strong { font-size: 1.65rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .dashboard-hero .btn-primary { transition: background-color 180ms ease, transform 180ms ease; }
+  .dashboard-hero .btn-primary:active { transform: scale(0.98); }
+}
