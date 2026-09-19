@@ -309,6 +309,35 @@
   .ios-icon { transition: none !important; }
 }
 
+/* Workout cards progressively disclose completed actions to keep long sessions
+   compact without removing any editable data from the DOM. */
+.exercise-card-head { min-width: 0; }
+.exercise-card-actions { display: inline-flex; flex: 0 0 auto; align-items: center; gap: var(--ios-space-1); }
+.exercise-collapsed-summary { min-width: 0; flex: 1 1 auto; display: grid; gap: var(--ios-space-1); align-content: center; }
+.exercise-collapsed-summary strong { overflow: hidden; color: var(--ios-label); font-size: var(--ios-body); font-weight: 650; text-overflow: ellipsis; white-space: nowrap; }
+.exercise-collapsed-summary span { overflow: hidden; color: var(--ios-secondary-label); font-size: var(--ios-footnote); text-overflow: ellipsis; white-space: nowrap; }
+.exercise-name-fields[hidden],
+.exercise-collapsed-summary[hidden],
+.exercise-card .set-table[hidden],
+.exercise-card .add-set[hidden] { display: none !important; }
+.exercise-card.is-collapsed { padding-block: var(--ios-space-3); }
+.exercise-card.is-collapsed .exercise-card-head { align-items: center; }
+
+#copy-previous { flex: 0 0 auto; min-width: max-content; white-space: nowrap; font-size: 13px; }
+
+@media (min-width: 40.001rem) and (max-width: 60rem) {
+  .set-header,
+  .set-row { grid-template-columns: 2.5rem minmax(4rem, 1fr) repeat(2, minmax(5rem, 1fr)) 2.5rem; }
+}
+
+@media (max-width: 40rem) {
+  .exercise-block .section-heading .toolbar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, auto); align-items: center; }
+  .exercise-block .section-heading .toolbar #copy-previous { min-width: 0; padding-inline: 10px; font-size: 12px; }
+  .exercise-block .section-heading .toolbar #add-exercise { min-width: 0; }
+  .set-row { grid-template-columns: 3.25rem minmax(0, 1fr) minmax(0, 1fr) 2.75rem; grid-template-areas: "number weight reps remove" "warmup warmup warmup remove"; }
+  .set-row [data-set-rir] { display: none; }
+}
+
 /* The workout editor is a continuous input surface: entering it must not
    animate the page or move the user's focus on iOS Safari. */
 @media (max-width: 60rem) {
