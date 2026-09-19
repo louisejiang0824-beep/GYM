@@ -711,3 +711,30 @@
   #app:has(.page-history-title) .record-card,
   #app:has(.summary-page-title) .calendar-day { transition: none !important; transform: none !important; }
 }
+
+/* Final local polish: make workout dates unmistakable while keeping the
+   calendar's existing click behavior and dimensions unchanged. */
+#app:has(.summary-page-title) .calendar-day.has-workout {
+  border-color: var(--ios-system-green-deep);
+  color: #000;
+  background: color-mix(in srgb, var(--ios-system-green) 72%, var(--ios-background));
+}
+#app:has(.summary-page-title) .calendar-day.has-workout > span,
+#app:has(.summary-page-title) .calendar-day.has-workout small { color: #000; }
+
+/* Keep the top-right local-save status inside the topbar at every viewport. */
+.topbar,
+.topbar-tools,
+.storage-status,
+.storage-label { min-width: 0; }
+.topbar { box-sizing: border-box; }
+.topbar-tools { flex: 0 1 auto; }
+.storage-status { max-width: clamp(7rem, 18vw, 11rem); overflow: hidden; text-overflow: ellipsis; }
+.storage-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+@media (max-width: 60rem) {
+  .topbar {
+    width: calc(100% - (2 * var(--page-gutter)));
+  }
+  .storage-status { max-width: min(45vw, 10rem); }
+}
