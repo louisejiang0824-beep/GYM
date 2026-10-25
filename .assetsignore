@@ -3,6 +3,7 @@
 .assetsignore
 wrangler.toml
 tools/
+.finesse/
 GYM/
 GYM - 副本/
 GYM - 副本 (2)/

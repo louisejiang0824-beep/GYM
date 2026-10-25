@@ -10,3 +10,6 @@
 /tools/*.png
 /tools/*.jpg
 /tools/*.jpeg
+
+# Local UI iteration history
+.finesse/

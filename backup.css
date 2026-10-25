@@ -1,0 +1,39 @@
+/* File backup controls reuse the app's existing green surface tokens. */
+.backup-banner {
+  display: grid;
+  gap: 14px;
+  width: calc(100% - 2 * var(--page-gutter, 20px));
+  max-width: 992px;
+  margin: 20px auto 0;
+  padding: 18px;
+  border: 1px solid var(--ui-line, #dfe8e1);
+  border-radius: 18px;
+  background: var(--ui-mint, #e4f1e8);
+  color: var(--ui-strong, #215c41);
+}
+.backup-banner strong { font-size: 15px; line-height: 1.6; }
+.backup-banner p { margin: 6px 0 0; font-size: 12px; line-height: 1.8; overflow-wrap: anywhere; }
+.backup-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.backup-actions .btn { min-height: 44px; padding: 10px 12px; font-size: 12px; }
+.settings-row.monthly-backup { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; width: 100%; }
+.backup-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-width: 0; }
+.backup-heading > div { min-width: 0; }
+.backup-heading h3 { margin: 0 0 5px; }
+.backup-heading p, .monthly-backup .backup-status, .monthly-backup .backup-help { margin: 0; font-size: 12px; line-height: 1.8; }
+.monthly-backup .backup-status { color: var(--ui-strong, #215c41); }
+.monthly-backup .backup-help { color: var(--ui-muted, #63756a); }
+.backup-switch { position: relative; display: inline-flex; align-items: center; justify-content: center; flex: 0 0 52px; width: 52px; height: 44px; cursor: pointer; }
+.backup-switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.backup-switch > span { display: block; width: 46px; height: 28px; border-radius: 999px; background: var(--ui-line, #dfe8e1); pointer-events: none; }
+.backup-switch > span::before { content: ''; display: block; width: 22px; height: 22px; margin: 3px; border-radius: 50%; background: var(--ui-surface, #ffffff); transform: translateX(0); }
+.backup-switch input:checked + span { background: var(--ui-green, #2f7d5a); }
+.backup-switch input:checked + span::before { transform: translateX(18px); }
+.backup-switch input:focus-visible + span { outline: 2px solid var(--ui-strong, #215c41); outline-offset: 3px; }
+@media (prefers-reduced-motion: no-preference) {
+  .backup-switch > span { transition: background-color 180ms; }
+  .backup-switch > span::before { transition: transform 180ms var(--ui-ease, ease-out); }
+}
+@media (max-width: 360px) {
+  .backup-banner { padding: 16px; }
+  .backup-actions .btn { padding-inline: 10px; }
+}
